@@ -40,9 +40,9 @@ namespace RevoKartLibrary
         /// </summary>
         /// <returns></returns>
         public static PluginConfig Load() {
-            if (!File.Exists($"{Runtime.ExecutableDir}\\SampleMapEditorConfig.json")) { new PluginConfig().Save(); }
+            if (!File.Exists(Path.Combine(Runtime.ExecutableDir,"SampleMapEditorConfig.json"))) { new PluginConfig().Save(); }
 
-            var config = JsonConvert.DeserializeObject<PluginConfig>(File.ReadAllText($"{Runtime.ExecutableDir}\\RevoKartConfig.json"));
+            var config = JsonConvert.DeserializeObject<PluginConfig>(File.ReadAllText(Path.Combine(Runtime.ExecutableDir,"RevoKartConfig.json")));
             config.Reload();
             return config;
         }
@@ -51,7 +51,7 @@ namespace RevoKartLibrary
         /// Saves the current configuration to json on disc.
         /// </summary>
         public void Save() {
-           File.WriteAllText($"{Runtime.ExecutableDir}\\SampleMapEditorConfig.json", JsonConvert.SerializeObject(this));
+           File.WriteAllText(Path.Combine(Runtime.ExecutableDir,"SampleMapEditorConfig.json"), JsonConvert.SerializeObject(this));
             Reload();
         }
 
